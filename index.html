@@ -2024,18 +2024,20 @@
 
       <!-- VISITOR COUNT (desktop only) -->
       <div class="card visitor-card">
-        <h3>Visitors</h3>
-        <div class="visitor-count"><span id="visitorNum">0</span></div>
-        <div class="visitor-label">total profile views</div>
-        <div class="visitor-live">
-          <span class="visitor-live-dot"></span>
-          updated live
-        </div>
-      </div>
-
-    </div>
+  <h3>Visitors</h3>
+  <div style="margin-top:12px">
+    <img
+      src="https://visitor-badge.laobi.icu/badge?page_id=pravinmajhi.Portfolio-website"
+      alt="Visitor Count"
+      style="height:40px;border-radius:8px"
+    />
   </div>
-
+  <div class="visitor-label" style="margin-top:10px">total profile views</div>
+  <div class="visitor-live">
+    <span class="visitor-live-dot"></span>
+    updated live
+  </div>
+</div>
   <script>
 
     function sendMail() {
@@ -2055,29 +2057,6 @@
       cards.forEach(c => c.classList.add('show'));
     }
     setTimeout(() => cards.forEach(c => c.classList.add('show')), 300);
-
-    // ============================================================
-    // VISITOR COUNTER
-    // ============================================================
-    (function () {
-      const el = document.getElementById('visitorNum');
-      if (!el) return;
-      fetch('https://hits.sh/pravin-kumar-majhi-portfolio.json')
-        .then(r => r.json())
-        .then(data => {
-          const target = data.hits || 1;
-          const start = performance.now();
-          function tick(now) {
-            const p = Math.min((now - start) / 1800, 1);
-            const ease = 1 - Math.pow(1 - p, 3);
-            el.textContent = Math.floor(ease * target).toLocaleString();
-            if (p < 1) requestAnimationFrame(tick);
-            else el.textContent = target.toLocaleString();
-          }
-          requestAnimationFrame(tick);
-        })
-        .catch(() => { el.textContent = '—' });
-    })();
 
     // ============================================================
     // CERT MODAL
