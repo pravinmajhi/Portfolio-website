@@ -1,0 +1,2292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pravin | Legal Portfolio</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f8f6f2;
+      --card: #ffffff;
+      --beige: #efe6dc;
+      --text: #111827;
+      --muted: #6b7280;
+      --accent: #e8d8c3;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text)
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 40px clamp(16px, 4vw, 60px)
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 32px
+    }
+
+    .card {
+      border-radius: 20px;
+      padding: 36px;
+      background: var(--card);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      transition: all 0.25s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .card.show {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .card:hover {
+      transform: translateY(-6px)
+    }
+
+    /* HERO */
+    .hero {
+      grid-column: span 12;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 64px;
+      background: linear-gradient(135deg, #2c2c2c, #111);
+      color: white;
+      gap: 40px;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      line-height: 1.1;
+      letter-spacing: -1px
+    }
+
+    .hero p {
+      margin-top: 14px;
+      font-size: 1rem;
+      opacity: 0.9
+    }
+
+    .hero img {
+      width: clamp(160px, 28vw, 320px);
+      aspect-ratio: 1/1;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .hero img:hover {
+      transform: scale(1.05);
+    }
+
+    h3 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 1px;
+      margin-bottom: 10px
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      margin-bottom: 10px;
+      line-height: 1.4
+    }
+
+    p {
+      font-size: 0.95rem;
+      line-height: 1.6
+    }
+
+    .muted {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 10px
+    }
+
+    .btn {
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      margin-top: 12px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: transform .15s ease, box-shadow .15s ease, background .2s ease;
+    }
+
+    .primary {
+      background: var(--accent)
+    }
+
+    .secondary {
+      background: #e5e7eb
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08)
+    }
+
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: none
+    }
+
+    /* GRID */
+    .featured {
+      grid-column: span 6;
+      background: var(--beige)
+    }
+
+    .about {
+      grid-column: span 6
+    }
+
+    .recent {
+      grid-column: span 6
+    }
+
+    .contact {
+      grid-column: span 6
+    }
+
+    .edu-card {
+      grid-column: span 6;
+      background: linear-gradient(135deg, #ffffff, #faf7f2);
+      border: 1px solid rgba(0, 0, 0, 0.04)
+    }
+
+    .cert-card {
+      grid-column: span 6;
+      background: linear-gradient(135deg, #efe6dc, #f5ede4);
+      border: 1px solid rgba(0, 0, 0, 0.05)
+    }
+
+    .competitions-card {
+      grid-column: span 12
+    }
+
+    .projects-section {
+      grid-column: span 12
+    }
+
+    /* VISITOR CARD */
+    .visitor-card {
+      grid-column: span 6;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 160px;
+    }
+
+    .visitor-card::before {
+      content: '';
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232, 216, 195, 0.08) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .visitor-card h3 {
+      color: rgba(255, 255, 255, 0.35);
+      margin-bottom: 14px
+    }
+
+    .visitor-card h3::before {
+      content: "👁 "
+    }
+
+    .visitor-count {
+      font-size: 3.8rem;
+      font-weight: 700;
+      letter-spacing: -2px;
+      color: white;
+      line-height: 1;
+      margin-bottom: 6px;
+      font-variant-numeric: tabular-nums
+    }
+
+    .visitor-count span {
+      background: linear-gradient(135deg, #e8d8c3, #f5e6d3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text
+    }
+
+    .visitor-label {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.35);
+      letter-spacing: 0.5px
+    }
+
+    .visitor-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.3);
+      margin-top: 14px;
+      padding: 4px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px
+    }
+
+    .visitor-live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #68d391;
+      animation: pulse 2s infinite
+    }
+
+    /* EDU & CERT */
+    .edu-item,
+    .cert-item {
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      transition: background .2s ease, transform .2s ease, box-shadow .2s ease
+    }
+
+    .edu-item:last-child,
+    .cert-item:last-child {
+      border-bottom: none
+    }
+
+    .edu-item:hover,
+    .cert-item:hover {
+      background: rgba(0, 0, 0, 0.02);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.04)
+    }
+
+    .edu-title {
+      font-weight: 600;
+      font-size: 1rem
+    }
+
+    .edu-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 4px
+    }
+
+    /* CERT CAROUSEL */
+    .cert-card {
+      grid-column: span 6;
+      background: linear-gradient(135deg, #efe6dc, #f5ede4);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+    }
+
+    .cert-carousel-wrapper {
+      position: relative;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+
+    .cert-track {
+      display: flex;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+
+    .cert-slide {
+      min-width: 100%;
+      padding: 0 2px;
+    }
+
+    .cert-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+      padding: 13px 0;
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .cert-item:hover {
+      background: rgba(0, 0, 0, 0.025);
+      transform: translateX(3px);
+    }
+
+    .cert-item:last-child {
+      border-bottom: none;
+    }
+
+    .cert-title {
+      font-weight: 500;
+      font-size: 0.9rem;
+      flex: 1;
+      min-width: 0;
+      line-height: 1.4;
+    }
+
+    .cert-title::before {
+      content: "📜 ";
+      display: inline-block;
+      transition: transform .25s ease;
+    }
+
+    .cert-item:hover .cert-title::before {
+      transform: translateY(-2px) scale(1.05);
+    }
+
+    .cert-item .btn {
+      margin-top: 0;
+      white-space: nowrap;
+      flex-shrink: 0;
+      font-size: 0.8rem;
+      padding: 8px 13px;
+    }
+
+    .cert-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+    }
+
+    .cert-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .cert-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.18);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: none;
+      padding: 0;
+    }
+
+    .cert-dot.active {
+      background: var(--text);
+      width: 20px;
+      border-radius: 4px;
+    }
+
+    .cert-arrows {
+      display: flex;
+      gap: 8px;
+    }
+
+    .cert-arrow {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1.5px solid rgba(0, 0, 0, 0.12);
+      background: white;
+      cursor: pointer;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      color: var(--text);
+    }
+
+    .cert-arrow:hover {
+      background: var(--text);
+      color: white;
+      border-color: var(--text);
+    }
+
+    .cert-arrow:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .cert-counter {
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+    }
+
+    /* ICON PREFIXES */
+    .edu-title::before {
+      content: "🎓 ";
+      display: inline-block;
+      transition: transform .25s ease, filter .25s ease
+    }
+
+    .recent h3::before {
+      content: "💼 "
+    }
+
+    .about h3::before {
+      content: "⚖️ "
+    }
+
+    .featured h3::before {
+      content: "🏆 "
+    }
+
+    .competitions-card h3::before {
+      content: "🎯 "
+    }
+
+    .edu-item:hover .edu-title::before {
+      transform: translateY(-2px) scale(1.05);
+      filter: saturate(1.2)
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.06);
+      margin-top: 6px;
+      color: var(--text)
+    }
+
+    /* COMPETITIONS */
+    .comp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 20px
+    }
+
+    .comp-item {
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.07);
+      background: var(--bg);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .comp-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08)
+    }
+
+    .comp-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px
+    }
+
+    .comp-type {
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted)
+    }
+
+    .comp-year {
+      font-size: 0.68rem;
+      padding: 3px 8px;
+      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--muted)
+    }
+
+    .comp-title {
+      font-weight: 600;
+      font-size: 0.97rem;
+      color: var(--text);
+      margin-bottom: 4px;
+      line-height: 1.3
+    }
+
+    .comp-org {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 12px
+    }
+
+    .comp-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center
+    }
+
+    .result-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-top: 0
+    }
+
+    .result-participant {
+      background: rgba(99, 179, 237, 0.12);
+      color: #2b6cb0
+    }
+
+    .result-finalist {
+      background: rgba(237, 137, 54, 0.15);
+      color: #c05621
+    }
+
+    .result-winner {
+      background: rgba(72, 187, 120, 0.15);
+      color: #276749
+    }
+
+    /* ============================================
+       PROJECTS CAROUSEL (HORIZONTAL SLIDER)
+    ============================================ */
+    .projects-section {
+      background: linear-gradient(135deg, #111, #1e1e1e);
+      color: white;
+      position: relative;
+      overflow: hidden;
+      padding-bottom: 36px;
+    }
+
+    .projects-section::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: rgba(232, 216, 195, 0.06);
+      pointer-events: none
+    }
+
+    .projects-section h3 {
+      color: rgba(255, 255, 255, 0.45);
+      margin-bottom: 6px
+    }
+
+    .projects-section h3::before {
+      content: "🚀 "
+    }
+
+    .projects-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 12px
+    }
+
+    .projects-header h2 {
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 0
+    }
+
+    /* Slider */
+    .proj-slider-outer {
+      position: relative;
+    }
+
+    .proj-slider-track-wrap {
+      overflow: hidden;
+    }
+
+    .proj-slider-track {
+      display: flex;
+      transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 24px;
+      transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+      cursor: default;
+      flex: 0 0 calc((100% - 32px) / 3);
+      margin-right: 16px;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
+
+    .project-card:last-child {
+      margin-right: 0;
+    }
+
+    .project-card:hover {
+      background: rgba(255, 255, 255, 0.09);
+      transform: translateY(-4px);
+      border-color: rgba(232, 216, 195, 0.3)
+    }
+
+    .project-card.dashed {
+      border-style: dashed;
+      opacity: 0.6;
+    }
+
+    .project-card.add-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 2px dashed rgba(255, 255, 255, 0.1);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      min-height: 180px;
+      opacity: 0.7;
+      transition: background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+    }
+
+    .project-card.add-card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(232, 216, 195, 0.3);
+      opacity: 1;
+      transform: translateY(-4px);
+    }
+
+    .add-card-icon {
+      font-size: 1.6rem;
+    }
+
+    .add-card-label {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.3);
+      font-weight: 500;
+    }
+
+    .project-type {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px
+    }
+
+    .type-website {
+      background: rgba(99, 179, 237, 0.15);
+      color: #90cdf4
+    }
+
+    .type-blog {
+      background: rgba(154, 230, 180, 0.15);
+      color: #9ae6b4
+    }
+
+    .type-research {
+      background: rgba(214, 188, 250, 0.15);
+      color: #d6bcfa
+    }
+
+    .type-tool {
+      background: rgba(251, 211, 141, 0.15);
+      color: #fbd38d
+    }
+
+    .project-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 8px;
+      line-height: 1.3
+    }
+
+    .project-desc {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.55;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .project-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px
+    }
+
+    .project-status {
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.35);
+      display: flex;
+      align-items: center;
+      gap: 5px
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #68d391;
+      animation: pulse 2s infinite
+    }
+
+    .status-dot.ongoing {
+      background: #f6ad55
+    }
+
+    .status-dot.completed {
+      background: #68d391;
+      animation: none
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.4
+      }
+    }
+
+    .project-link {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      padding: 5px 12px;
+      border: 1px solid rgba(232, 216, 195, 0.25);
+      border-radius: 6px;
+      transition: background 0.2s ease, border-color 0.2s ease
+    }
+
+    .project-link:hover {
+      background: rgba(232, 216, 195, 0.1);
+      border-color: rgba(232, 216, 195, 0.5)
+    }
+
+    .project-link.coming-soon {
+      color: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.08);
+      cursor: not-allowed;
+      pointer-events: none
+    }
+
+    /* Slider navigation */
+    .proj-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .proj-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .proj-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      padding: 0;
+    }
+
+    .proj-dot.active {
+      background: var(--accent);
+      width: 20px;
+      border-radius: 4px;
+    }
+
+    .proj-arrows {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .proj-arrow {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      border: 1.5px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.05);
+      cursor: pointer;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .proj-arrow:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #111;
+    }
+
+    .proj-arrow:disabled {
+      opacity: 0.25;
+      cursor: not-allowed;
+    }
+
+    .proj-counter {
+      font-size: 0.72rem;
+      color: rgba(255, 255, 255, 0.3);
+      letter-spacing: 0.5px;
+    }
+
+    .btn-add-proj {
+      background: rgba(232, 216, 195, 0.12);
+      border: 1px solid rgba(232, 216, 195, 0.25);
+      color: var(--accent);
+      border-radius: 8px;
+      padding: 9px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-add-proj:hover {
+      background: rgba(232, 216, 195, 0.2);
+      border-color: var(--accent);
+    }
+
+    /* MODALS */
+    .modal {
+      z-index: 9999;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.3s;
+      padding: 16px
+    }
+
+    .modal.active {
+      visibility: visible;
+      opacity: 1
+    }
+
+    .modal-content {
+      background: white;
+      width: 90%;
+      max-width: 720px;
+      border-radius: 16px;
+      padding: 24px;
+      max-height: 90vh;
+      overflow: auto
+    }
+
+    .modal iframe {
+      width: 100%;
+      height: 420px;
+      border: none
+    }
+
+    .close {
+      float: right;
+      cursor: pointer;
+      font-size: 1.1rem;
+      line-height: 1
+    }
+
+    .add-modal-content {
+      background: #1a1a1a;
+      color: white;
+      width: 90%;
+      max-width: 520px;
+      border-radius: 16px;
+      padding: 32px;
+      max-height: 90vh;
+      overflow: auto
+    }
+
+    .add-modal-content h2 {
+      color: white;
+      font-size: 1.2rem;
+      margin-bottom: 20px
+    }
+
+    .form-group {
+      margin-bottom: 16px
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 6px
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: white;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: rgba(232, 216, 195, 0.5)
+    }
+
+    .form-group select option {
+      background: #1a1a1a
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px
+    }
+
+    .btn-dark {
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.15s ease
+    }
+
+    .btn-save {
+      background: var(--accent);
+      color: #111
+    }
+
+    .btn-cancel {
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.6)
+    }
+
+    .btn-dark:hover {
+      opacity: 0.85;
+      transform: translateY(-1px)
+    }
+
+    /* ============================================
+       BLOG POPUP MODAL
+    ============================================ */
+    .blog-modal-overlay {
+      z-index: 10000;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+      padding: 16px;
+    }
+
+    .blog-modal-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .blog-modal-box {
+      background: #0f0f0f;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 680px;
+      max-height: 88vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(24px) scale(0.97);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+    }
+
+    .blog-modal-overlay.active .blog-modal-box {
+      transform: translateY(0) scale(1);
+    }
+
+    .blog-modal-header {
+      padding: 24px 28px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .blog-modal-header-left h2 {
+      color: white;
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .blog-modal-header-left p {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.3);
+      line-height: 1.4;
+    }
+
+    .blog-modal-close {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .blog-modal-close:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: white;
+    }
+
+    .blog-modal-body {
+      overflow-y: auto;
+      padding: 20px 28px 28px;
+      flex: 1;
+    }
+
+    /* Scrollbar */
+    .blog-modal-body::-webkit-scrollbar { width: 4px; }
+    .blog-modal-body::-webkit-scrollbar-track { background: transparent; }
+    .blog-modal-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+    .blog-entry {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      text-decoration: none;
+      transition: background 0.2s ease;
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .blog-entry:last-child {
+      border-bottom: none;
+    }
+
+    .blog-entry:hover {
+      background: rgba(255, 255, 255, 0.03);
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-left: -10px;
+      margin-right: -10px;
+    }
+
+    .blog-entry:hover .blog-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .blog-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(232, 216, 195, 0.08);
+      border: 1px solid rgba(232, 216, 195, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #e8d8c3;
+      flex-shrink: 0;
+      margin-top: 2px;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0;
+    }
+
+    .blog-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .blog-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .blog-tag {
+      font-size: 0.62rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 3px 8px;
+      border-radius: 20px;
+    }
+
+    .tag-tech { background: rgba(99, 179, 237, 0.12); color: #90cdf4; }
+    .tag-const { background: rgba(214, 188, 250, 0.12); color: #d6bcfa; }
+    .tag-tax { background: rgba(251, 211, 141, 0.12); color: #fbd38d; }
+    .tag-corp { background: rgba(154, 230, 180, 0.12); color: #9ae6b4; }
+    .tag-adr { background: rgba(252, 129, 129, 0.12); color: #fc8181; }
+
+    .blog-title-text {
+      font-size: 0.97rem;
+      font-weight: 600;
+      color: white;
+      line-height: 1.4;
+      margin-bottom: 5px;
+    }
+
+    .blog-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .blog-date {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.28);
+    }
+
+    .blog-read {
+      font-size: 0.72rem;
+      color: rgba(255, 255, 255, 0.22);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .blog-read::before { content: "·"; }
+
+    .blog-excerpt {
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.38);
+      line-height: 1.55;
+      margin-top: 6px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .blog-arrow {
+      font-size: 0.9rem;
+      color: #e8d8c3;
+      opacity: 0;
+      transform: translateX(-6px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    .blog-coming-soon-badge {
+      font-size: 0.62rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 3px 8px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.25);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Blog trigger link style inside project card */
+    .blog-trigger-link {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      padding: 5px 12px;
+      border: 1px solid rgba(232, 216, 195, 0.25);
+      border-radius: 6px;
+      transition: background 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+      background: none;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .blog-trigger-link:hover {
+      background: rgba(232, 216, 195, 0.1);
+      border-color: rgba(232, 216, 195, 0.5);
+    }
+
+    /* TABLET */
+    @media(max-width:1024px) {
+      .wrapper {
+        padding: 28px 20px
+      }
+
+      .container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px
+      }
+
+      .hero {
+        grid-column: span 2;
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 48px 32px;
+        gap: 24px;
+        align-items: center
+      }
+
+      .hero h1 {
+        font-size: 2.4rem
+      }
+
+      .card {
+        padding: 28px
+      }
+
+      .hero,
+      .featured,
+      .about,
+      .recent,
+      .contact,
+      .edu-card,
+      .cert-card {
+        grid-column: span 1
+      }
+
+      .recent,
+      .contact,
+      .projects-section,
+      .competitions-card {
+        grid-column: span 2
+      }
+
+      .visitor-card {
+        display: none
+      }
+
+      .modal iframe {
+        height: 340px
+      }
+
+      .project-card {
+        flex: 0 0 calc((100% - 16px) / 2);
+      }
+
+      .blog-modal-box {
+        max-width: 560px;
+      }
+    }
+
+    /* MOBILE */
+    @media(max-width:599px) {
+      .wrapper {
+        padding: 16px 12px
+      }
+
+      .container {
+        grid-template-columns: 1fr;
+        gap: 14px
+      }
+
+      .hero,
+      .featured,
+      .about,
+      .recent,
+      .contact,
+      .edu-card,
+      .cert-card,
+      .projects-section,
+      .competitions-card {
+        grid-column: span 1
+      }
+
+      .hero {
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+        padding: 32px 20px;
+        gap: 20px
+      }
+
+      .hero h1 {
+        font-size: 1.85rem;
+        letter-spacing: -0.5px
+      }
+
+      .hero p {
+        font-size: 0.9rem
+      }
+
+      .card {
+        padding: 20px;
+        border-radius: 16px
+      }
+
+      h2 {
+        font-size: 1.1rem
+      }
+
+      h3 {
+        font-size: 0.7rem
+      }
+
+      p {
+        font-size: 0.88rem
+      }
+
+      .muted {
+        font-size: 0.78rem
+      }
+
+      .cert-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px
+      }
+
+      .cert-item .btn,
+      .btn {
+        width: 100%;
+        text-align: center;
+        padding: 11px 14px
+      }
+
+      .recent .btn {
+        display: block;
+        width: 100%
+      }
+
+      .edu-title {
+        font-size: 0.92rem
+      }
+
+      .edu-meta {
+        font-size: 0.76rem
+      }
+
+      .modal-content {
+        padding: 16px;
+        border-radius: 12px
+      }
+
+      .modal iframe {
+        height: 260px
+      }
+
+      .comp-grid {
+        grid-template-columns: 1fr
+      }
+
+      .form-row {
+        grid-template-columns: 1fr
+      }
+
+      .projects-header {
+        flex-direction: column
+      }
+
+      .project-card {
+        flex: 0 0 100%;
+        margin-right: 16px;
+      }
+
+      .blog-modal-box {
+        border-radius: 16px;
+      }
+
+      .blog-modal-header {
+        padding: 18px 18px 14px;
+      }
+
+      .blog-modal-body {
+        padding: 14px 18px 20px;
+      }
+
+      .blog-entry {
+        gap: 12px;
+      }
+
+      .blog-num {
+        width: 30px;
+        height: 30px;
+        font-size: 0.68rem;
+        border-radius: 8px;
+      }
+
+      .blog-title-text {
+        font-size: 0.9rem;
+      }
+
+      .blog-trigger-link {
+        width: 100%;
+        text-align: center;
+        display: block;
+        padding: 10px 14px;
+      }
+    }
+
+    .contact-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 14px;
+      border-radius: 10px;
+      border: 1.5px solid rgba(0, 0, 0, 0.08);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .contact-btn:hover {
+      background: var(--text);
+      color: white;
+      border-color: var(--text);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    /* CV Button styling */
+    .btn-cv {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #111;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 12px;
+      transition: transform .15s ease, box-shadow .15s ease, background .2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-cv:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(232, 216, 195, 0.4);
+      background: #dfc9ae;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- CERT MODAL -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <span style="font-size:0.8rem;color:#6b7280">Certificate Preview</span>
+        <div style="display:flex;align-items:center;gap:10px">
+          <a id="modalOpenLink" href="#" target="_blank"
+            style="font-size:0.78rem;font-weight:500;color:#111;text-decoration:none;padding:5px 12px;border:1px solid #d1d5db;border-radius:6px;transition:background 0.2s"
+            onmouseover="this.style.background='#f3f4f6'" onmouseout="this.style.background=''">
+            Open in Drive ↗
+          </a>
+          <span class="close" onclick="closeModal()">✖</span>
+        </div>
+      </div>
+      <iframe id="modalFrame" allow="autoplay"></iframe>
+    </div>
+  </div>
+
+  <!-- ADD PROJECT MODAL -->
+  <div class="modal" id="addProjectModal">
+    <div class="add-modal-content">
+      <span class="close" onclick="closeAddModal()" style="color:rgba(255,255,255,0.5)">✖</span>
+      <h2>Add New Project</h2>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Type</label>
+          <select id="pType">
+            <option value="website">🌐 Website</option>
+            <option value="blog">✍️ Blog</option>
+            <option value="research">📄 Research</option>
+            <option value="tool">🛠 Tool</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Status</label>
+          <select id="pStatus">
+            <option value="live">✅ Live</option>
+            <option value="ongoing">🔄 Ongoing</option>
+            <option value="coming">⏳ Coming Soon</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Project Title</label>
+        <input type="text" id="pTitle" placeholder="e.g. Legal Research Blog">
+      </div>
+      <div class="form-group">
+        <label>Short Description</label>
+        <textarea id="pDesc" placeholder="What is this project about?"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Link (URL)</label>
+        <input type="url" id="pLink" placeholder="https://...">
+      </div>
+      <div class="form-actions">
+        <button class="btn-dark btn-save" onclick="saveProject()">Add Project</button>
+        <button class="btn-dark btn-cancel" onclick="closeAddModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOG POPUP MODAL -->
+  <div class="blog-modal-overlay" id="blogModal">
+    <div class="blog-modal-box">
+      <div class="blog-modal-header">
+        <div class="blog-modal-header-left">
+          <h2>✍️ Legal Writing Blog</h2>
+          <p>Essays on Technology Law, Taxation & Corporate Law · Click any article to read</p>
+        </div>
+        <button class="blog-modal-close" onclick="closeBlogModal()">✕</button>
+      </div>
+      <div class="blog-modal-body">
+
+        <!-- Blog 1 -->
+        <div class="blog-entry" onclick="openBlog('https://www.ijllr.com/post/the-evolving-landscape-of-waqf-in-india-a-legal-and-socio-economic-perspective')">
+          <div class="blog-num">01</div>
+          <div class="blog-info">
+            <div class="blog-tags">
+              <span class="blog-tag tag-const">Constitutional Law</span>
+              <span class="blog-tag tag-corp">Socio-Economic</span>
+            </div>
+            <div class="blog-title-text">The Evolving Landscape of Waqf in India: A Legal and Socio-Economic Perspective</div>
+            <div class="blog-meta-row">
+              <span class="blog-date">Apr 25, 2025</span>
+              <span class="blog-read">Published · IJLLR Vol. VII Issue II</span>
+            </div>
+            <div class="blog-excerpt">Peer-reviewed analysis of the Waqf Amendment Act 2025, examining constitutional validity, property rights, and the socio-economic implications for minority communities in India.</div>
+          </div>
+          <span class="blog-arrow">→</span>
+        </div>
+
+        <!-- Blog 2 -->
+        <div class="blog-entry" onclick="openBlog('https://pravinmajhi.github.io/The-Gavel-Meets-the-Algorithm./')">
+          <div class="blog-num">02</div>
+          <div class="blog-info">
+            <div class="blog-tags">
+              <span class="blog-tag tag-tech">Legal-Tech</span>
+              <span class="blog-tag tag-corp">AI & Law</span>
+            </div>
+            <div class="blog-title-text">The Gavel Meets the Algorithm</div>
+            <div class="blog-meta-row">
+              <span class="blog-date">Published</span>
+              <span class="blog-read">Live</span>
+            </div>
+            <div class="blog-excerpt">Exploring how AI tools are transforming legal research, contract drafting, and due diligence — and why India urgently needs a regulatory framework for AI in law.</div>
+          </div>
+          <span class="blog-arrow">→</span>
+        </div>
+
+        <!-- Blog 3 -->
+        <div class="blog-entry" onclick="openBlog('https://pravinmajhi.github.io/Digital-Handcuffs/')">
+          <div class="blog-num">03</div>
+          <div class="blog-info">
+            <div class="blog-tags">
+              <span class="blog-tag tag-tech">Technology Law</span>
+              <span class="blog-tag tag-const">Data Privacy</span>
+            </div>
+            <div class="blog-title-text">Digital Handcuffs</div>
+            <div class="blog-meta-row">
+              <span class="blog-date">Published</span>
+              <span class="blog-read">Live</span>
+            </div>
+            <div class="blog-excerpt">Examining the DPDP Act's framework against global standards like GDPR — gaps, enforcement challenges, and what it means for Indian citizens and businesses.</div>
+          </div>
+          <span class="blog-arrow">→</span>
+        </div>
+
+        <!-- Blog 4 -->
+        <div class="blog-entry" onclick="openBlog('#')">
+          <div class="blog-num">04</div>
+          <div class="blog-info">
+            <div class="blog-tags">
+              <span class="blog-tag tag-tax">Taxation Law</span>
+              <span class="blog-tag tag-corp">Corporate</span>
+            </div>
+            <div class="blog-title-text">GST & E-Commerce: Navigating Compliance in India's Digital Economy</div>
+            <div class="blog-meta-row">
+              <span class="blog-date">Coming Soon</span>
+              <span class="blog-read">Draft in Progress</span>
+            </div>
+            <div class="blog-excerpt">A breakdown of GST obligations for e-commerce operators and sellers, including TCS provisions, place of supply rules, and emerging issues in platform taxation.</div>
+          </div>
+          <span class="blog-coming-soon-badge">Soon</span>
+        </div>
+
+        <!-- Blog 5 -->
+        <div class="blog-entry" onclick="openBlog('#')">
+          <div class="blog-num">05</div>
+          <div class="blog-info">
+            <div class="blog-tags">
+              <span class="blog-tag tag-adr">ADR</span>
+              <span class="blog-tag tag-corp">Dispute Resolution</span>
+            </div>
+            <div class="blog-title-text">Mediation as a Tool for Corporate Dispute Resolution in India</div>
+            <div class="blog-meta-row">
+              <span class="blog-date">Coming Soon</span>
+              <span class="blog-read">Draft in Progress</span>
+            </div>
+            <div class="blog-excerpt">How the Mediation Act 2023 reshapes commercial dispute resolution — institutional mediation, enforceability of settlement agreements, and the road ahead for Indian corporates.</div>
+          </div>
+          <span class="blog-coming-soon-badge">Soon</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="wrapper">
+    <div class="container">
+
+      <!-- HERO -->
+      <div class="card hero">
+        <div>
+          <h1>Pravin Majhi</h1>
+          <p>5 Year Integrated Law Course (ILC.), Faculty of Law, University of Delhi (2023–2028)</p><br>
+          <!-- Updated: "View Work" now opens CV PDF in a new tab -->
+          <a
+            href="https://drive.google.com/file/d/1NyMKH_2IwnnE9bnprJkSWlpbw4or-6kY/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-cv"
+          >
+            📄 View CV →
+          </a>
+        </div>
+        <img src="WhatsApp Image 2026-03-29 at 6.52.13 PM.jpeg" alt="Pravin Kumar Majhi">
+      </div>
+
+      <!-- HIGHLIGHTS -->
+      <div class="card featured">
+        <h3>Highlights</h3>
+        <div style="padding:14px 0;border-bottom:1px solid rgba(0,0,0,0.08)">
+          <p style="font-size:1rem;font-weight:600;color:var(--text);margin-bottom:4px">🏆 Best Researcher – Intra Moot Court</p>
+          <p style="font-size:0.8rem;color:var(--muted);margin-bottom:8px">National Forensic Sciences University | Delhi Campus</p>
+          <span class="badge">Legal Research</span>
+        </div>
+        <div style="padding:14px 0;border-bottom:1px solid rgba(0,0,0,0.08)">
+          <p style="font-size:1rem;font-weight:600;color:var(--text);margin-bottom:4px">🚀 Finalist – Disrupt: Expedition to Excellence</p>
+          <p style="font-size:0.8rem;color:var(--muted);margin-bottom:8px">Udgam, IIT Guwahati &nbsp;|&nbsp; Mar 2025</p>
+          <span class="badge">Entrepreneurship</span>
+          <span class="badge" style="margin-left:4px">Innovation</span>
+        </div>
+        <div style="padding:14px 0;border-bottom:1px solid rgba(0,0,0,0.08)">
+          <p style="font-size:1rem;font-weight:600;color:var(--text);margin-bottom:4px">⚖️ Quarter Finalist – Mediation Competition</p>
+          <p style="font-size:0.8rem;color:var(--muted);margin-bottom:8px">NUALS Kochi &nbsp;|&nbsp; 2025</p>
+          <span class="badge">ADR</span>
+          <span class="badge" style="margin-left:4px">Mediation</span>
+        </div>
+        <div style="padding:14px 0">
+          <p style="font-size:1rem;font-weight:600;color:var(--text);margin-bottom:4px">📜 Published Paper – IJLLR</p>
+          <p style="font-size:0.8rem;color:var(--muted);margin-bottom:8px">Volume VII Issue II &nbsp;|&nbsp; Apr 25, 2025</p>
+          <span class="badge">Constitutional Law</span>
+          <span class="badge" style="margin-left:4px">Socio-Economic Law</span>
+        </div>
+      </div>
+
+      <!-- PROFILE -->
+      <div class="card about">
+        <h3>Profile</h3>
+        <p>Law student at 5-Year Integrated Law Course (ILC.), Faculty of Law, University of Delhi, building at the intersection of law and technology. I research, draft, and compete with a mindset that's analytical, not just argumentative. From moot courts to legal-tech projects, I work on bridging the gap between legal theory and real-world application.</p>
+        <p style="margin-top:12px">What I bring: → Legal Research & Advocacy → Technology Law & Compliance → Taxation & Corporate Law → Structured thinking + basic coding for smarter legal work</p>
+      </div>
+
+      <!-- CORE SKILLS -->
+      <div class="card about">
+        <h3>Core Skills</h3>
+        <p>
+          - Legal Research<br>
+          - Legal Drafting<br>
+          - Contract Drafting<br>
+          - Case Analysis<br>
+          - ADR & Mediation<br>
+          - Constitutional Law<br>
+          - Regulatory Compliance<br>
+          - Data Privacy Law<br>
+          - Legal-Tech<br>
+          - Corporate Awareness
+        </p>
+      </div>
+
+      <!-- EXPERIENCE -->
+      <div class="card recent">
+        <h3>Experience</h3>
+        <p><b>Legal & Tech Intern – LeXploR (Nowlez)</b></p>
+        <p class="muted">Jul 2025 – Sep 2025 | Hybrid</p>
+        <p>• Worked on AI-powered legal research tools</p>
+        <p>• Assisted in legal-tech workflows and research automation</p>
+        <button class="btn secondary" onclick="openCert('lexplor')">View Certificate</button>
+        <hr style="opacity:0.2;margin:16px 0">
+        <p><b>Legal Intern – District & Sessions Court, Tis Hazari</b></p>
+        <p class="muted">Jan 2025 – Feb 2025 | Delhi</p>
+        <p>• Assisted Adv. Naresh Kumar Baniwal in case preparation</p>
+        <p>• Observed litigation procedure and drafting</p>
+        <button class="btn secondary" onclick="openCert('court')">View Certificate</button>
+      </div>
+
+      <!-- EDUCATION -->
+      <div class="card edu-card">
+        <h3>Education</h3>
+        <div class="edu-item">
+          <div class="edu-title">University of Delhi</div>
+          <div class="edu-meta">BBA LL.B (Hons) • 2023–2028</div>
+          <span class="badge">Core Law</span>
+        </div>
+        <div class="edu-item">
+          <div class="edu-title">Institute of Company Secretaries of India (ICSI)</div>
+          <div class="edu-meta">Executive Programme • Corporate Focus</div>
+          <span class="badge">Corporate Law</span>
+        </div>
+        <div class="edu-item">
+          <div class="edu-title">Government Senior Secondary School • Rangpo, Sikkim</div>
+          <div class="edu-meta">Completed 2022</div>
+        </div>
+      </div>
+
+      <!-- CERTIFICATIONS (CAROUSEL) -->
+      <div class="card cert-card">
+        <h3>Certifications</h3>
+
+        <div class="cert-carousel-wrapper">
+          <div class="cert-track" id="certTrack">
+
+            <!-- SLIDE 1 -->
+            <div class="cert-slide">
+              <div class="cert-item">
+                <div class="cert-title">Constitutional Law – MyCaptain (2026)</div>
+                <button class="btn secondary" onclick="openCert('const')">View →</button>
+              </div>
+              <div class="cert-item">
+                <div class="cert-title">Psychology Course – MyCaptain (2026)</div>
+                <button class="btn secondary" onclick="openCert('psy')">View →</button>
+              </div>
+              <div class="cert-item">
+                <div class="cert-title">GGSIPU Legal Entrepreneurship (2025)</div>
+                <button class="btn secondary" onclick="openCert('ggsipu')">View →</button>
+              </div>
+              <div class="cert-item">
+                <div class="cert-title">Finalist – Disrupt: Expedition to Excellence</div>
+                <button class="btn secondary" onclick="openCert('disr')">View →</button>
+              </div>
+            </div>
+
+            <!-- SLIDE 2 -->
+            <div class="cert-slide">
+              <div class="cert-item">
+                <div class="cert-title">Environment, Climate Change & Health (ECH)</div>
+                <button class="btn secondary" onclick="openCert('ech')">View →</button>
+              </div>
+              <div class="cert-item">
+                <div class="cert-title">Latham & Watkins – Mergers & Acquisitions</div>
+                <button class="btn secondary" onclick="openCert('latham')">View →</button>
+              </div>
+              <div class="cert-item">
+                <div class="cert-title">IJLLR Publication Certificate (2025)</div>
+                <button class="btn secondary" onclick="openCert('ijllr')">View →</button>
+              </div>
+              <div class="cert-item">
+                <div class="cert-title">Best Researcher – Intra Moot Court, NFSU</div>
+                <button class="btn secondary" onclick="openCert('nfsu')">View →</button>
+              </div>
+            </div>
+
+            <!-- SLIDE 3 -->
+            <div class="cert-slide">
+              <div class="cert-item">
+                <div class="cert-title">LeXploR Internship Certificate (2025)</div>
+                <button class="btn secondary" onclick="openCert('lexplor')">View →</button>
+              </div>
+              <div class="cert-item">
+                <div class="cert-title">District Court Internship – Tis Hazari (2025)</div>
+                <button class="btn secondary" onclick="openCert('court')">View →</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="cert-nav">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div class="cert-dots" id="certDots"></div>
+            <span class="cert-counter" id="certCounter">1 / 3</span>
+          </div>
+          <div class="cert-arrows">
+            <button class="cert-arrow" id="certPrev" onclick="moveCert(-1)">←</button>
+            <button class="cert-arrow" id="certNext" onclick="moveCert(1)">→</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIVE PROJECTS – HORIZONTAL SLIDER -->
+      <div class="card projects-section">
+        <h3>Live Projects & Writing</h3>
+        <div class="projects-header">
+          <h2 style="color:white;margin-bottom:0">Things I've Built & Published</h2>
+          <button class="btn-add-proj" onclick="openAddModal()">+ Add Project</button>
+        </div>
+
+        <div class="proj-slider-outer">
+          <div class="proj-slider-track-wrap">
+            <div class="proj-slider-track" id="projTrack">
+
+              <div class="project-card">
+                <span class="project-type type-website">🌐 Website</span>
+                <div class="project-title">Legal Portfolio</div>
+                <div class="project-desc">This portfolio website showcasing my legal experience, education, and work.</div>
+                <div class="project-footer">
+                  <span class="project-status"><span class="status-dot completed"></span>Live</span>
+                  <a href="#" class="project-link">Visit →</a>
+                </div>
+              </div>
+
+              <!-- BLOG CARD — triggers popup -->
+              <div class="project-card dashed">
+                <span class="project-type type-blog">✍️ Blog</span>
+                <div class="project-title">Legal Writing Blog</div>
+                <div class="project-desc">5 articles on Technology Law, Taxation, Constitutional & Corporate Law. Some live, some coming soon.</div>
+                <div class="project-footer">
+                  <span class="project-status"><span class="status-dot ongoing"></span>Ongoing</span>
+                  <button class="blog-trigger-link" onclick="openBlogModal()">View Blogs →</button>
+                </div>
+              </div>
+
+              <div class="project-card dashed">
+                <span class="project-type type-research">📄 Research</span>
+                <div class="project-title">IJLLR Published Paper</div>
+                <div class="project-desc">Peer-reviewed paper on Constitutional & Socio-Economic Law, Volume VII Issue II.</div>
+                <div class="project-footer">
+                  <span class="project-status"><span class="status-dot completed"></span>Published</span>
+                  <a href="https://www.ijllr.com/post/the-evolving-landscape-of-waqf-in-india-a-legal-and-socio-economic-perspective" class="project-link" target="_blank">Link →</a>
+                </div>
+              </div>
+
+              <!-- Happy Tiffin Project -->
+              <div class="project-card">
+                <span class="project-type type-tool">🍱 Web App</span>
+                <div class="project-title">Happy Tiffin</div>
+                <div class="project-desc">A web project built and deployed on GitHub Pages — exploring food-tech and digital product development.</div>
+                <div class="project-footer">
+                  <span class="project-status"><span class="status-dot completed"></span>Live</span>
+                  <a href="https://pravinmajhi.github.io/happy-tiffin/" class="project-link" target="_blank">Visit →</a>
+                </div>
+              </div>
+
+              <!-- Cube Smash Project -->
+              <div class="project-card">
+                <span class="project-type type-tool">🎮 Game</span>
+                <div class="project-title">Cube Smash</div>
+                <div class="project-desc">An interactive browser game built and deployed on GitHub Pages — showcasing coding and creative development skills.</div>
+                <div class="project-footer">
+                  <span class="project-status"><span class="status-dot completed"></span>Live</span>
+                  <a href="https://pravinmajhi.github.io/cube-samsh/" class="project-link" target="_blank">Play →</a>
+                </div>
+              </div>
+
+              <!-- Add card always at end -->
+              <div class="project-card add-card" onclick="openAddModal()">
+                <span class="add-card-icon">＋</span>
+                <span class="add-card-label">Add a project or blog</span>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="proj-nav">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="proj-dots" id="projDots"></div>
+              <span class="proj-counter" id="projCounter"></span>
+            </div>
+            <div class="proj-arrows">
+              <button class="proj-arrow" id="projPrev" onclick="moveProj(-1)">←</button>
+              <button class="proj-arrow" id="projNext" onclick="moveProj(1)">→</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="card contact">
+        <h3>Contact</h3>
+
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+          <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem">
+            <span style="font-size:1.1rem">📍</span>
+            <span>New Delhi, India</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:0.9rem">
+            <span style="font-size:1.1rem">✉️</span>
+            <a href="mailto:pravinmajhi9@ilc.du.ac.in" style="color:var(--text);text-decoration:none">pravinmajhi9@ilc.du.ac.in</a>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <a href="mailto:pravinmajhi9@ilc.du.ac.in" class="contact-btn">
+            <span>✉️</span> Email
+          </a>
+          <a href="https://www.linkedin.com/in/pravin-majhi/" target="_blank" class="contact-btn">
+            <span>💼</span> LinkedIn
+          </a>
+          <a href="https://github.com/pravinmajhi" target="_blank" class="contact-btn">
+            <span>🐙</span> GitHub
+          </a>
+          <a href="https://www.researchgate.net/profile/Pravin-Majhi/research" target="_blank" class="contact-btn">
+            <span>📄</span> ResearchGate
+          </a>
+          <a href="https://maps.app.goo.gl/cFvvVHcGFht7Hys28" target="_blank" class="contact-btn" style="grid-column:span 2">
+            <span>📍</span> View on Google Maps
+          </a>
+        </div>
+      </div>
+
+      <!-- VISITOR COUNT (desktop only) -->
+      <div class="card visitor-card">
+        <h3>Visitors</h3>
+        <div class="visitor-count"><span id="visitorNum">0</span></div>
+        <div class="visitor-label">total profile views</div>
+        <div class="visitor-live">
+          <span class="visitor-live-dot"></span>
+          updated live
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+
+    function sendMail() {
+      window.location.href = "mailto:pravinmajhi9@ilc.du.ac.in";
+    }
+
+    // ============================================================
+    // SCROLL ANIMATION
+    // ============================================================
+    const cards = document.querySelectorAll('.card');
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(e => {
+        e.forEach(x => { if (x.isIntersecting) x.target.classList.add('show') });
+      }, { threshold: 0.05 });
+      cards.forEach(c => obs.observe(c));
+    } else {
+      cards.forEach(c => c.classList.add('show'));
+    }
+    setTimeout(() => cards.forEach(c => c.classList.add('show')), 300);
+
+    // ============================================================
+    // VISITOR COUNTER
+    // ============================================================
+    (function () {
+      const el = document.getElementById('visitorNum');
+      if (!el) return;
+      fetch('https://hits.sh/pravin-kumar-majhi-portfolio.json')
+        .then(r => r.json())
+        .then(data => {
+          const target = data.hits || 1;
+          const start = performance.now();
+          function tick(now) {
+            const p = Math.min((now - start) / 1800, 1);
+            const ease = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.floor(ease * target).toLocaleString();
+            if (p < 1) requestAnimationFrame(tick);
+            else el.textContent = target.toLocaleString();
+          }
+          requestAnimationFrame(tick);
+        })
+        .catch(() => { el.textContent = '—' });
+    })();
+
+    // ============================================================
+    // CERT MODAL
+    // ============================================================
+    const certLinks = {
+      lexplor: 'https://drive.google.com/file/d/1T7_NZGifktKfvQwO9xa3xsLcQkE068g7/preview',
+      court: '',
+      const: 'https://drive.google.com/file/d/1W60YfJZi9VdyyOuO70PcRfOCnOusFLtR/preview',
+      psy: 'https://drive.google.com/file/d/1bPKCUS7Wi-1LETsckTruEbEFvQgOjafb/preview',
+      ggsipu: 'https://drive.google.com/file/d/1huajSF7sQnQrSSH0p4ES0lCfeCWdlyhM/preview',
+      disr: 'https://drive.google.com/file/d/1VT2VC82Te99mABIJhTewZxY6A29N8aZe/preview',
+      ech: 'https://drive.google.com/file/d/15WaEWAd32bpxx3X2GOwUf5r_nTJQP0Lc/preview',
+      latham: 'https://drive.google.com/file/d/1-3E4logEyXaPz88y1o8Z3opPiHGFR_10/preview',
+      ijllr: 'https://drive.google.com/file/d/1Ze8nAYzqRZB6IIuF93-utmKoim5fHG6E/preview',
+      nfsu: '',
+    };
+
+    function openCert(type) {
+      const url = certLinks[type];
+      if (!url) { alert('Certificate link coming soon!'); return; }
+      document.getElementById('modalFrame').src = url;
+      document.getElementById('modalOpenLink').href = url.replace('/preview', '/view');
+      document.getElementById('modal').classList.add('active');
+    }
+    function closeModal() {
+      document.getElementById('modal').classList.remove('active');
+      document.getElementById('modalFrame').src = '';
+    }
+    document.getElementById('modal').addEventListener('click', function (e) {
+      if (e.target === this) closeModal();
+    });
+
+    // ============================================================
+    // BLOG MODAL
+    // ============================================================
+    function openBlogModal() {
+      document.getElementById('blogModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeBlogModal() {
+      document.getElementById('blogModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function openBlog(url) {
+      if (!url || url === '#') return;
+      window.open(url, '_blank');
+    }
+    document.getElementById('blogModal').addEventListener('click', function (e) {
+      if (e.target === this) closeBlogModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closeBlogModal();
+        closeModal();
+        closeAddModal();
+      }
+    });
+
+    // ============================================================
+    // CERT CAROUSEL
+    // ============================================================
+    let certIdx = 0;
+    const certTrack = document.getElementById('certTrack');
+    const certSlides = certTrack.querySelectorAll('.cert-slide');
+    const certTotal = certSlides.length;
+    const certDotsEl = document.getElementById('certDots');
+    const certCounterEl = document.getElementById('certCounter');
+
+    for (let i = 0; i < certTotal; i++) {
+      const d = document.createElement('button');
+      d.className = 'cert-dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', () => goCert(i));
+      certDotsEl.appendChild(d);
+    }
+
+    function updateCertUI() {
+      certTrack.style.transform = `translateX(calc(-${certIdx * 100}%))`;
+      certDotsEl.querySelectorAll('.cert-dot').forEach((d, i) => d.classList.toggle('active', i === certIdx));
+      certCounterEl.textContent = `${certIdx + 1} / ${certTotal}`;
+      document.getElementById('certPrev').disabled = certIdx === 0;
+      document.getElementById('certNext').disabled = certIdx === certTotal - 1;
+    }
+
+    function goCert(idx) { certIdx = Math.max(0, Math.min(idx, certTotal - 1)); updateCertUI(); }
+    function moveCert(dir) { goCert(certIdx + dir); }
+    updateCertUI();
+
+    // ============================================================
+    // PROJECTS SLIDER
+    // ============================================================
+    let projIdx = 0;
+    const projTrack = document.getElementById('projTrack');
+    const projDotsEl = document.getElementById('projDots');
+    const projCounterEl = document.getElementById('projCounter');
+
+    function getVisibleCount() {
+      return window.innerWidth <= 599 ? 1 : window.innerWidth <= 1024 ? 2 : 3;
+    }
+
+    function getProjCards() {
+      return Array.from(projTrack.children);
+    }
+
+    function buildProjDots() {
+      projDotsEl.innerHTML = '';
+      const cards = getProjCards();
+      const vis = getVisibleCount();
+      const pages = Math.max(1, cards.length - vis + 1);
+      for (let i = 0; i < pages; i++) {
+        const d = document.createElement('button');
+        d.className = 'proj-dot' + (i === 0 ? ' active' : '');
+        d.addEventListener('click', () => goProj(i));
+        projDotsEl.appendChild(d);
+      }
+    }
+
+    function updateProjUI() {
+      const cards = getProjCards();
+      const vis = getVisibleCount();
+      const pages = Math.max(1, cards.length - vis + 1);
+      projIdx = Math.max(0, Math.min(projIdx, pages - 1));
+      const cardEl = cards[0];
+      const cardW = cardEl ? (cardEl.offsetWidth + 16) : 0;
+      projTrack.style.transform = `translateX(-${projIdx * cardW}px)`;
+      projDotsEl.querySelectorAll('.proj-dot').forEach((d, i) => d.classList.toggle('active', i === projIdx));
+      projCounterEl.textContent = pages > 1 ? `${projIdx + 1} / ${pages}` : '';
+      document.getElementById('projPrev').disabled = projIdx === 0;
+      document.getElementById('projNext').disabled = projIdx >= pages - 1;
+    }
+
+    function goProj(idx) { projIdx = idx; updateProjUI(); }
+    function moveProj(dir) { projIdx += dir; updateProjUI(); }
+
+    buildProjDots();
+    requestAnimationFrame(updateProjUI);
+
+    window.addEventListener('resize', () => {
+      buildProjDots();
+      projIdx = 0;
+      requestAnimationFrame(updateProjUI);
+    });
+
+    // ============================================================
+    // ADD PROJECT MODAL
+    // ============================================================
+    function openAddModal() { document.getElementById('addProjectModal').classList.add('active'); }
+    function closeAddModal() { document.getElementById('addProjectModal').classList.remove('active'); clearForm(); }
+    document.getElementById('addProjectModal').addEventListener('click', function (e) {
+      if (e.target === this) closeAddModal();
+    });
+
+    function clearForm() {
+      ['pTitle', 'pDesc', 'pLink'].forEach(id => document.getElementById(id).value = '');
+      document.getElementById('pType').value = 'website';
+      document.getElementById('pStatus').value = 'live';
+    }
+
+    const typeConfig = {
+      website: { label: '🌐 Website', cls: 'type-website' },
+      blog: { label: '✍️ Blog', cls: 'type-blog' },
+      research: { label: '📄 Research', cls: 'type-research' },
+      tool: { label: '🛠 Tool', cls: 'type-tool' },
+    };
+    const statusConfig = {
+      live: { label: 'Live', dot: 'completed', linkText: 'Visit →', disabled: false },
+      ongoing: { label: 'Ongoing', dot: 'ongoing', linkText: 'Visit →', disabled: false },
+      coming: { label: 'Coming Soon', dot: 'ongoing', linkText: 'Soon →', disabled: true },
+    };
+
+    function saveProject() {
+      const title = document.getElementById('pTitle').value.trim();
+      const desc = document.getElementById('pDesc').value.trim();
+      const link = document.getElementById('pLink').value.trim();
+      const type = document.getElementById('pType').value;
+      const status = document.getElementById('pStatus').value;
+      if (!title) { alert('Please enter a project title.'); return; }
+
+      const t = typeConfig[type], s = statusConfig[status];
+      const card = document.createElement('div');
+      card.className = 'project-card';
+      card.innerHTML = `
+        <span class="project-type ${t.cls}">${t.label}</span>
+        <div class="project-title">${esc(title)}</div>
+        <div class="project-desc">${esc(desc) || 'No description provided.'}</div>
+        <div class="project-footer">
+          <span class="project-status"><span class="status-dot ${s.dot}"></span>${s.label}</span>
+          ${link
+          ? `<a href="${esc(link)}" target="_blank" class="project-link ${s.disabled ? 'coming-soon' : ''}">${s.linkText}</a>`
+          : `<a class="project-link coming-soon">${s.linkText}</a>`}
+        </div>`;
+
+      const addCard = projTrack.querySelector('.add-card');
+      projTrack.insertBefore(card, addCard);
+
+      buildProjDots();
+      projIdx = getProjCards().length - 1 - getVisibleCount();
+      updateProjUI();
+      closeAddModal();
+    }
+
+    function esc(s) {
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    const st = document.createElement('style');
+    st.textContent = '@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}';
+    document.head.appendChild(st);
+
+  </script>
+
+</body>
+</html>
